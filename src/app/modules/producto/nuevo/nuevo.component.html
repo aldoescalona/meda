@@ -1,0 +1,76 @@
+<app-cargando titulo="Producto" [cargando]="cargando"></app-cargando>
+
+
+<div class="card">
+  <div class="card-body">
+
+
+    <div class="row">
+      <div class="col-sm-12 col-lg-8">
+        <form (ngSubmit)="guardar()" [formGroup]="forma">
+
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="nombre" type="text" class="form-control" [ngClass]="{'is-invalid':nombre.invalid && (nombre.dirty || nombre.touched)}" formControlName="nombre">
+            <div class="invalid-feedback" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+              <div *ngIf="nombre.errors.required">
+                Ingrese un nombre
+              </div>
+              <div *ngIf="nombre.errors.maxlength">
+                Use máximo 25 caracteres
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="descripcion">Descripción</label>
+            <input id="descripcion" name="descripcion" type="text" class="form-control" [ngClass]="{'is-invalid':descripcion.invalid && (descripcion.dirty || descripcion.touched)}" formControlName="descripcion">
+            <div class="invalid-feedback" *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+              <div *ngIf="descripcion.errors.required">
+                Ingrese una descripción
+              </div>
+              <div *ngIf="descripcion.errors.maxlength">
+                Use máximo 45 caracteres
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="lote">Lote</label>
+            <input id="lote" name="lote" type="text" class="form-control" [ngClass]="{'is-invalid':lote.invalid && (lote.dirty || lote.touched)}" formControlName="lote">
+            <div class="invalid-feedback" *ngIf="lote.invalid && (lote.dirty || lote.touched)">
+              <div *ngIf="lote.errors.required">
+                Ingrese un lote
+              </div>
+              <div *ngIf="lote.errors.maxlength">
+                Use máximo 25 caracteres
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="caducidad">Fecha</label>
+            <input (ngModelChange)="producto.caducidad = dateChanged($event)" id="caducidad" name="caducidad" type="date" class="form-control" min="2019-06-01T00:00" max="2029-06-01T00:00" [ngClass]="{'is-invalid':caducidad.invalid && (caducidad.dirty || caducidad.touched)}"
+              formControlName="caducidad">
+
+            <div class="invalid-feedback" *ngIf="caducidad.invalid && (caducidad.dirty || caducidad.touched)">
+              <div *ngIf="caducidad.errors.required">
+                Seleccione fecha de caducidad
+              </div>
+            </div>
+
+          </div>
+
+
+
+          <button type="submit" class="btn btn-primary waves-effect waves-light m-r-10">
+            <i class="fa fa-save"></i>
+            Guardar
+          </button>
+          <a routerLink="/productos" class="btn btn-inverse waves-effect waves-light">Cancelar</a>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

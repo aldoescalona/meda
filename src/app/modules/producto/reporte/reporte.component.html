@@ -1,0 +1,47 @@
+<app-cargando titulo="Reporte" [cargando]="cargando"></app-cargando>
+
+
+<div class="row" *ngIf="movimientos.length > 0">
+
+    <div class="col-sm-12 col-lg-10 mb-4">
+      <div class="card shadow d-4">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th style="width: auto">Producto</th>
+                  <th style="width: 25%">Lote</th>
+                  <th style="width: 20%">Caducidad</th>
+                  <th style="width: 20%">Fecha</th>
+                  <th style="width: 20%">Tipo</th>
+                  <th style="width: 20%">Cantidad</th>
+                  <th style="width: 20%">Sumatoria</th>
+                </tr>
+              </thead>
+  
+              <tbody>
+                <tr *ngFor="let mov of movimientos" >
+                  <td>
+                    {{mov.productoId.nombre}}
+                  </td>
+                  <td>
+                    {{mov.productoId.lote}}
+                  </td>
+                  <td>
+                    {{mov.productoId.caducidad | date:'dd-MM-yyyy'}}
+                  </td>
+                  <td>
+                      {{mov.fecha | date:'dd-MM-yyyy'}}
+                    </td>
+                  <td>{{mov.tipo}}</td>
+                  <td>{{mov.tipo=='SALIDA'?'-':''}}{{mov.cantidad}}</td>
+                  <td>{{mov.sumatoria}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,53 @@
+<app-cargando titulo="Productos" [cargando]="cargando"></app-cargando>
+
+<div class="row">
+
+  <div class="col-sm-12 col-lg-10 mb-4">
+    <div class="card shadow d-4">
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <button (click)="nuevoProducto()" class="btn btn-primary waves-effect waves-light m-r-10">
+          <i class="fa fa-plus"></i>
+          Nuevo
+        </button>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th style="width: auto">Nombre</th>
+                <th style="width: 25%">Lote</th>
+                <th style="width: 20%">Caducidad</th>
+                <th style="width: auto"></th>
+              </tr>
+            </thead>
+
+            <tbody *ngIf="productos">
+              <tr *ngFor="let producto of productos">
+                <td>
+                  {{producto.nombre}}
+                </td>
+                <td>
+                  {{producto.lote}}
+                </td>
+                <td>
+                    {{producto.caducidad | date:'dd-MM-yyyy'}}
+                  </td>
+                <td class="p-1">
+                  <button [routerLink]="['/productos/movimiento', 'e', producto.id]" class="btn btn-sm btn-success">
+                    <i class="fa fa-sign-in-alt"></i>
+                    Entrada
+                  </button>
+                  <button [routerLink]="['/productos/movimiento', 's', producto.id]"  class="btn btn-sm btn-danger ml-2">
+                    <i class="fa fa-external-link-alt"></i>
+                    Salida
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
